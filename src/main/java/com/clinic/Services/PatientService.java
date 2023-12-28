@@ -2,38 +2,28 @@ package com.clinic.Services;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.clinic.Payloads.AppointmentDto;
+import com.clinic.Payloads.PatientDto;
 
-import com.clinic.Dao.PatientRepository;
-import com.clinic.Models.Patient;
-
-@Service
-public class PatientService {
-    @Autowired
-    private PatientRepository patientRepository;
+public interface PatientService {
 
     // Service for creating new Patient
-    public Patient createPatient(Patient patient) {
-        Patient p = patientRepository.save(patient);
-        return p;
-    }
+    PatientDto createPatient(PatientDto patient);
 
     // Service for Getting one Patient by id
-    public Patient getPatientById(int id) {
-        Patient p = patientRepository.findById(id).get();
-        return p;
-    }
+    PatientDto getPatientById(int id);
 
     // Get all Patients
-    public List<Patient> getAllPatients() {
-        List<Patient> patients = patientRepository.findAll();
-        return patients;
-    }
+    List<PatientDto> getAllPatients();
 
     // Delete Patient by id
-    public void deletePatientById(int id) {
-        patientRepository.deleteById(id);
-    }
+    void deletePatientById(int id);
 
+    // Update Patient by id
+    PatientDto updatePatientById(PatientDto patient, int id);
+
+    // Get Appointments by Patient id
+    List<AppointmentDto> getAppointmentsByPatientId(int id);
+
+    
 }

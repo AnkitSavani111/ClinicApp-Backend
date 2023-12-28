@@ -17,11 +17,11 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Getter
+@Setter
 public class Patient {
 
     @Id
@@ -50,5 +50,4 @@ public class Patient {
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.REMOVE)
     private List<Appointment> appointments;
-
 }
