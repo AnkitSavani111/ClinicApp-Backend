@@ -64,7 +64,6 @@ public class PatientServiceImpl implements PatientService {
     public List<AppointmentDto> getAppointmentsByPatientId(int id) {
         List<Appointment> appointments = patientRepository.findByPatientId(id);
         return appointments.stream().map(this::appointmentToDto).collect(Collectors.toList());
-        
     }
 
     private Patient dtoToPatient(PatientDto patientDto) {
@@ -72,12 +71,12 @@ public class PatientServiceImpl implements PatientService {
         return patient;
     }
 
-    public PatientDto patientToDto(Patient patient) {
+    private PatientDto patientToDto(Patient patient) {
         PatientDto patientDto = modelMapper.map(patient, PatientDto.class);
         return patientDto;
     }
 
-    public AppointmentDto appointmentToDto(Appointment appointment) {
+    private AppointmentDto appointmentToDto(Appointment appointment) {
         AppointmentDto appointmentDto = modelMapper.map(appointment, AppointmentDto.class);
         return appointmentDto;
     }

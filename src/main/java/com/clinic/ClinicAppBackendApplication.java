@@ -11,10 +11,8 @@ public class ClinicAppBackendApplication {
 		SpringApplication.run(ClinicAppBackendApplication.class, args);
 	}
 
-
 	@Bean
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
-
 }

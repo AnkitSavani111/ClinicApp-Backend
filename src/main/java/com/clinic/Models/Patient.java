@@ -48,6 +48,6 @@ public class Patient {
 
     private int age;
 
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 }
