@@ -3,6 +3,8 @@ package com.clinic.Models;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,7 +49,8 @@ public class Patient {
     private String address;
 
     private int age;
-
+    
+    @JsonBackReference
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 }
