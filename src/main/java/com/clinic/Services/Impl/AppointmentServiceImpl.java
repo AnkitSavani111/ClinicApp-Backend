@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.clinic.Dao.AppointmentRepository;
+import com.clinic.Exceptions.ResourceNotFoundException;
 import com.clinic.Models.Appointment;
 import com.clinic.Payloads.AppointmentDto;
 import com.clinic.Services.AppointmentService;
@@ -30,7 +31,8 @@ public class AppointmentServiceImpl implements AppointmentService {
     // Service implemantation for Getting one Appointment by id
     @Override
     public AppointmentDto getAppointmentById(int id) {
-        Appointment appointment = this.appointmentRepository.findById(id).get();
+        Appointment appointment = this.appointmentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Appointment", "id", String.valueOf(id)));
         return appointmentToDto(appointment);
     }
 
@@ -47,14 +49,17 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public AppointmentDto updateAppointmentById(AppointmentDto appointment, int id) {
         Appointment newAppointment = dtoToAppointment(appointment);
-        Appointment savedAppointment = appointmentRepository.save(newAppointment);
+        Appointment savedAppointment = this.appointmentRepository.save(newAppointment);
         return appointmentToDto(savedAppointment);
     }
 
     // Service implemantation for Deleting Appointment by id
     @Override
     public void deleteAppointmentById(int id) {
-        appointmentRepository.deleteById(id);
+        Appointment appointment = appointmentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Appointment", "id", String.valueOf(id)));
+
+        appointmentRepository.delete(appointment);
     }
 
     private AppointmentDto appointmentToDto(Appointment appointment) {

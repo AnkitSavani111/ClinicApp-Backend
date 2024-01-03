@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.clinic.Dao.PatientRepository;
+import com.clinic.Exceptions.ResourceNotFoundException;
 import com.clinic.Models.Appointment;
 import com.clinic.Models.Patient;
 import com.clinic.Payloads.AppointmentDto;
@@ -34,7 +35,8 @@ public class PatientServiceImpl implements PatientService {
     // Service implemantation for Getting one Patient by id
     @Override
     public PatientDto getPatientById(int id) {
-        Patient p = patientRepository.findById(id).get();
+        Patient p = patientRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Patient", "id", String.valueOf(id)));
         return this.patientToDto(p);
     }
 
