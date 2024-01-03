@@ -30,5 +30,5 @@ public class AppointmentDto {
 
     private Patient patient;
 
-    private List<Prescription> prescription;
+    // private List<Prescription> prescription;
 }

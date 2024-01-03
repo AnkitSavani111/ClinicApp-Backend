@@ -36,7 +36,7 @@ public class Prescription {
 
     private boolean beforeMedication;
 
-    @JsonManagedReference
+    // @JsonManagedReference
     @ManyToOne
     private Appointment appointment;
 }
