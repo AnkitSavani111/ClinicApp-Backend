@@ -1,6 +1,8 @@
 package com.clinic.Controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,11 +52,13 @@ public class PatientController {
 
     // Get all Patients
     @GetMapping("/")
-    public ResponseEntity<List<PatientDto>> getAllPatients() {
+    public ResponseEntity<?> getAllPatients() {
         List<PatientDto> patients = this.patientService.getAllPatients();
 
-        if (patients.size() <= 0) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        if (patients.size() <= 0) { 
+            Map<String, String> message = new HashMap<String, String>();
+            message.put("message", "Patient not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
         }
         return ResponseEntity.of(Optional.of(patients));
     }

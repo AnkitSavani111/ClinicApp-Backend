@@ -1,6 +1,8 @@
 package com.clinic.Controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +29,12 @@ public class AppointmentController {
 
     // Get All Appointment
     @GetMapping("/")
-    public ResponseEntity<List<AppointmentDto>> getAllAppointments() {
+    public ResponseEntity<?> getAllAppointments() {
         List<AppointmentDto> appointments = this.appointmentService.getAllAppointments();
         if (appointments.size() <= 0) {
-            return ResponseEntity.notFound().build();
+            Map<String, String> message = new HashMap<String, String>();
+            message.put("message", "Appointment not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
         }
         return ResponseEntity.of(Optional.of(appointments));
     }
