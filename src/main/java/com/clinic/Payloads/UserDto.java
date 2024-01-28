@@ -1,14 +1,10 @@
 package com.clinic.Payloads;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.clinic.Models.Role;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+import lombok.Data;
+
+@Data
 public class UserDto {
     private int user_id;
 
@@ -18,5 +14,5 @@ public class UserDto {
 
     private String password;
 
-    private String role;
+    private Role role;
 }
