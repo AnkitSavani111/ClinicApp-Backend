@@ -68,7 +68,7 @@ public class JwtServiceImpl implements JwtService{
     public String doGenerateToken(Map<String, Object> claims, String subject) {
 
         return Jwts.builder().claims(claims).subject(subject).issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
+                .expiration(new Date(System.currentTimeMillis() + (JWT_TOKEN_VALIDITY * 1000)))
                 .signWith(secretKey).compact();
     }
 
