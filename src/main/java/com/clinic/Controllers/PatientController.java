@@ -55,7 +55,7 @@ public class PatientController {
     public ResponseEntity<?> getAllPatients() {
         List<PatientDto> patients = this.patientService.getAllPatients();
 
-        if (patients.size() <= 0) { 
+        if (patients.isEmpty()) { 
             Map<String, String> message = new HashMap<String, String>();
             message.put("message", "Patient not found");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);

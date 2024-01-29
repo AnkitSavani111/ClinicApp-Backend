@@ -15,4 +15,10 @@ public class GlobalExceptionHandler {
         ApiResponse response = new ApiResponse(ex.getMessage(), false);
         return new ResponseEntity<ApiResponse>(response, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(DuplicateResourceException.class)
+    public ResponseEntity<ApiResponse> handleDuplicateResourceException(DuplicateResourceException ex) {
+        ApiResponse response = new ApiResponse(ex.getMessage(), false);
+        return new ResponseEntity<ApiResponse>(response, HttpStatus.CONFLICT);
+    }
 }
