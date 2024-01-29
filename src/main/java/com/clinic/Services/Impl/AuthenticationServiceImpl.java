@@ -3,8 +3,6 @@ package com.clinic.Services.Impl;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,8 +22,6 @@ import com.clinic.Services.JwtService;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
-
-    Logger logger = LoggerFactory.getLogger(AuthenticationServiceImpl.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -64,7 +60,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     public JwtResponse login(JwtRequest jwtRequest) {
-        logger.info("Email : {}", jwtRequest.getEmail());
         authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getEmail(), jwtRequest.getPassword()));
         User user = userRepository.findByEmail(jwtRequest.getEmail())
