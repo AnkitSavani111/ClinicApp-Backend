@@ -29,6 +29,6 @@ public class AppointmentDto {
     private String remarks;
 
     private Patient patient;
-
-    // private List<Prescription> prescription;
+    
+    private List<Prescription> prescription;
 }

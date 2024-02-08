@@ -1,7 +1,6 @@
 package com.clinic.Models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,7 +35,7 @@ public class Prescription {
 
     private boolean beforeMedication;
 
-    // @JsonManagedReference
+    @JsonBackReference
     @ManyToOne
     private Appointment appointment;
 }
