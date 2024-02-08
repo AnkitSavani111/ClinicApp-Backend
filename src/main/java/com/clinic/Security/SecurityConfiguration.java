@@ -46,11 +46,12 @@ public class SecurityConfiguration {
             .cors(cors -> cors.disable())
             .authorizeHttpRequests(
                     auth -> auth
-                            .requestMatchers("/auth/**").permitAll().anyRequest().authenticated())
+                            .requestMatchers("/auth/**", "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/swagger-resources/**", "/swagger-resources").permitAll().anyRequest().authenticated())
             .exceptionHandling(ex -> ex.authenticationEntryPoint(point))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(authenticationProvider())
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+            
         return http.build();
         }
 
