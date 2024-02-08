@@ -20,7 +20,7 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtServiceImpl implements JwtService{
     // requirement :
-    private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
+    private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60 * 60 * 60;
 
     // public static final long JWT_TOKEN_VALIDITY = 60;
     private static String secret = "qFdyhjErunLhLiugMkjhKJBKJjkbjafacasDasfasxASFAxASkFACASDFASFASfDAFASFASDAADSCSDFADCVSGCFVADXCcadwavfsfarvf";
