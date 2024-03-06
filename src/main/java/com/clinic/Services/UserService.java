@@ -1,8 +1,8 @@
-package com.clinic.Services;
+// package com.clinic.Services;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
+// import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService {
-    UserDetailsService userDetailsService();
+// public interface UserService {
+//     UserDetailsService userDetailsService();
     
-}
+// }
