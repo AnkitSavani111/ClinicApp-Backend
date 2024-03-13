@@ -1,5 +1,6 @@
 package com.clinic.Controllers;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +24,9 @@ public class UserController {
     private AuthenticationService authenticationService;
 
     @GetMapping("/login")
-    public ResponseEntity<?> login(@RequestBody JwtRequest jwtRequest) {
-        JwtResponse jwtResponse = authenticationService.login(jwtRequest);
+    public ResponseEntity<?> login(@RequestBody JwtRequest jwtRequest, HttpServletResponse response) {
+
+        JwtResponse jwtResponse = authenticationService.login(jwtRequest, response);
         return ResponseEntity.ok(jwtResponse);
     }
 

@@ -4,7 +4,10 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +22,8 @@ import com.clinic.Models.User;
 import com.clinic.Payloads.UserDto;
 import com.clinic.Services.AuthenticationService;
 import com.clinic.Services.JwtService;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -38,13 +43,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Value("${jwt.cookieExpiry}")
+    private int cookieExpiry;
+
     public UserDto signup(UserDto userDto) {
         UserDto user = new UserDto();
         user.setUsername(userDto.getUsername());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setRole(Role.DOCTOR);
-
         Optional<User> foundUser = userRepository.findByUsername(user.getUsername());
         if (foundUser.isPresent()) {
             throw new DuplicateResourceException("User", "username", user.getUsername());
@@ -59,22 +66,26 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
     }
 
-    public JwtResponse login(JwtRequest jwtRequest) {
+    public JwtResponse login(JwtRequest jwtRequest, HttpServletResponse response) {
+
         authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getEmail(), jwtRequest.getPassword()));
         User user = userRepository.findByEmail(jwtRequest.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Username or Password"));
         // String token = jwtService.generateToken(user);
-        return new JwtResponse(jwtService.generateToken(user), user.getEmail());
-    }
+        String token = jwtService.generateToken(user);
+        ResponseCookie cookie = ResponseCookie.from("token", token)
+                .httpOnly(true)
+                .secure(false)
+                .path("/")
+                .maxAge(cookieExpiry)
+                .build();
+        response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
-    private UserDto userToDto(User user) {
-        UserDto userDto = modelMapper.map(user, UserDto.class);
-        return userDto;
+        return new JwtResponse(token, user.getEmail());
     }
 
     private User dtoToUser(UserDto userDto) {
-        User user = modelMapper.map(userDto, User.class);
-        return user;
+        return modelMapper.map(userDto, User.class);
     }
 }

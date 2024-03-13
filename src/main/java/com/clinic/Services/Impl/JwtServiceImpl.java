@@ -8,6 +8,7 @@ import java.util.function.Function;
 
 import javax.crypto.SecretKey;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +20,12 @@ import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtServiceImpl implements JwtService{
-    // requirement :
-    private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60 * 60 * 60;
 
-    // public static final long JWT_TOKEN_VALIDITY = 60;
-    private static String secret = "qFdyhjErunLhLiugMkjhKJBKJjkbjafacasDasfasxASFAxASkFACASDFASFASfDAFASFASDAADSCSDFADCVSGCFVADXCcadwavfsfarvf";
+    @Value("${jwt.cookieExpiry}")
+    private int cookieExpiry;
+    private static final String secret = "qFdyhjErunLhLiugMkjhKJBKJjkbjafacasDasfasxASFAxASkFACASDFASFASfDAFASFASDAADSCSDFADCVSGCFVADXCcadwavfsfarvf";
 
-    private static SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+    private static final SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
 
     // retrieve username from jwt token
     public String getUsernameFromToken(String token) {
@@ -68,7 +68,7 @@ public class JwtServiceImpl implements JwtService{
     public String doGenerateToken(Map<String, Object> claims, String subject) {
 
         return Jwts.builder().claims(claims).subject(subject).issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + (JWT_TOKEN_VALIDITY * 1000)))
+                .expiration(new Date(System.currentTimeMillis() + (cookieExpiry * 1000L)))
                 .signWith(secretKey).compact();
     }
 
