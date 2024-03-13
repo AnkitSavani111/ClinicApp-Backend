@@ -21,14 +21,14 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Autowired
     private ModelMapper modelMapper;
 
-    // Service implemantation for Getting all Appointments
+    // Service implementation for Getting all Appointments
     @Override
     public List<AppointmentDto> getAllAppointments() {
         List<Appointment> appointments = this.appointmentRepository.findAll();
         return appointments.stream().map(this::appointmentToDto).collect(Collectors.toList());
     }
 
-    // Service implemantation for Getting one Appointment by id
+    // Service implementation for Getting one Appointment by id
     @Override
     public AppointmentDto getAppointmentById(int id) {
         Appointment appointment = this.appointmentRepository.findById(id)
@@ -36,7 +36,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         return appointmentToDto(appointment);
     }
 
-    // Service implemantation for Creating new Appointment
+    // Service implementation for Creating new Appointment
     @Override
     public AppointmentDto createAppointment(AppointmentDto appointment) {
         Appointment newAppointment = dtoToAppointment(appointment);
@@ -45,7 +45,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         return appointmentToDto(savedAppointment);
     }
 
-    // Service implemantation for Updating Appointment by id
+    // Service implementation for Updating Appointment by id
     @Override
     public AppointmentDto updateAppointmentById(AppointmentDto appointment, int id) {
         Appointment newAppointment = dtoToAppointment(appointment);
@@ -53,7 +53,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         return appointmentToDto(savedAppointment);
     }
 
-    // Service implemantation for Deleting Appointment by id
+    // Service implementation for Deleting Appointment by id
     @Override
     public void deleteAppointmentById(int id) {
         Appointment appointment = appointmentRepository.findById(id)
@@ -63,12 +63,10 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     private AppointmentDto appointmentToDto(Appointment appointment) {
-        AppointmentDto appointmentDto = modelMapper.map(appointment, AppointmentDto.class);
-        return appointmentDto;
+        return modelMapper.map(appointment, AppointmentDto.class);
     }
 
     private Appointment dtoToAppointment(AppointmentDto appointmentDto) {
-        Appointment appointment = modelMapper.map(appointmentDto, Appointment.class);
-        return appointment;
+        return modelMapper.map(appointmentDto, Appointment.class);
     }
 }

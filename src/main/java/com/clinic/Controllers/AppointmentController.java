@@ -31,8 +31,8 @@ public class AppointmentController {
     @GetMapping("/")
     public ResponseEntity<?> getAllAppointments() {
         List<AppointmentDto> appointments = this.appointmentService.getAllAppointments();
-        if (appointments.size() <= 0) {
-            Map<String, String> message = new HashMap<String, String>();
+        if (appointments.isEmpty()) {
+            Map<String, String> message = new HashMap<>();
             message.put("message", "Appointment not found");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
         }

@@ -6,18 +6,18 @@ import com.clinic.Payloads.AppointmentDto;
 
 public interface AppointmentService {
     // Get all Appointments
-    public List<AppointmentDto> getAllAppointments();
+    List<AppointmentDto> getAllAppointments();
 
     // Get one Appointment by id
-    public AppointmentDto getAppointmentById(int id);
+    AppointmentDto getAppointmentById(int id);
 
     // Create new Appointment
-    public AppointmentDto createAppointment(AppointmentDto appointment);
+    AppointmentDto createAppointment(AppointmentDto appointment);
 
     // Update Appointment by id
-    public AppointmentDto updateAppointmentById(AppointmentDto appointment, int id);
+    AppointmentDto updateAppointmentById(AppointmentDto appointment, int id);
 
     // Delete Appointment by id
-    public void deleteAppointmentById(int id);
+    void deleteAppointmentById(int id);
 
 }

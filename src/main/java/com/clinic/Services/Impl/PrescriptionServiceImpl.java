@@ -30,8 +30,7 @@ public class PrescriptionServiceImpl implements PrescriptionService{
 
     // Service implemantation for Getting Prescription by id
     public PrescriptionDto getPrescriptionById(int id) {
-        Prescription presc = prescriptionRepository.findById(id).get();
-        return prescriptionToDto(presc);
+        return prescriptionToDto(prescriptionRepository.findById(id).isPresent() ? prescriptionRepository.findById(id).get() : null);
     }
 
     // Service for Getting all Prescriptions

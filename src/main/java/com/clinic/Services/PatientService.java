@@ -1,9 +1,8 @@
 package com.clinic.Services;
 
-import java.util.List;
-
-import com.clinic.Payloads.AppointmentDto;
 import com.clinic.Payloads.PatientDto;
+
+import java.util.List;
 
 public interface PatientService {
 
@@ -22,8 +21,5 @@ public interface PatientService {
     // Update Patient by id
     PatientDto updatePatientById(PatientDto patient, int id);
 
-    // Get Appointments by Patient id
-    List<AppointmentDto> getAppointmentsByPatientId(int id);
 
-    
 }

@@ -1,19 +1,16 @@
 package com.clinic.Services.Impl;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import com.clinic.Dao.PatientRepository;
+import com.clinic.Exceptions.ResourceNotFoundException;
+import com.clinic.Models.Patient;
+import com.clinic.Payloads.PatientDto;
+import com.clinic.Services.PatientService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.clinic.Dao.PatientRepository;
-import com.clinic.Exceptions.ResourceNotFoundException;
-import com.clinic.Models.Appointment;
-import com.clinic.Models.Patient;
-import com.clinic.Payloads.AppointmentDto;
-import com.clinic.Payloads.PatientDto;
-import com.clinic.Services.PatientService;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PatientServiceImpl implements PatientService {
@@ -61,25 +58,12 @@ public class PatientServiceImpl implements PatientService {
         return this.patientToDto(savedPatient);
     }
 
-    // Service implemantation for Getting all Appointments by Patient id
-    @Override
-    public List<AppointmentDto> getAppointmentsByPatientId(int id) {
-        List<Appointment> appointments = patientRepository.findByPatientId(id);
-        return appointments.stream().map(this::appointmentToDto).collect(Collectors.toList());
-    }
-
     private Patient dtoToPatient(PatientDto patientDto) {
-        Patient patient = modelMapper.map(patientDto, Patient.class);
-        return patient;
+        return modelMapper.map(patientDto, Patient.class);
     }
 
     private PatientDto patientToDto(Patient patient) {
-        PatientDto patientDto = modelMapper.map(patient, PatientDto.class);
-        return patientDto;
+        return modelMapper.map(patient, PatientDto.class);
     }
 
-    private AppointmentDto appointmentToDto(Appointment appointment) {
-        AppointmentDto appointmentDto = modelMapper.map(appointment, AppointmentDto.class);
-        return appointmentDto;
-    }
 }
