@@ -69,18 +69,20 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public JwtResponse login(JwtRequest jwtRequest, HttpServletResponse response) {
 
         authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getEmail(), jwtRequest.getPassword()));
+            .authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getEmail(), jwtRequest.getPassword()));
         User user = userRepository.findByEmail(jwtRequest.getEmail())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid Username or Password"));
+            .orElseThrow(() -> new IllegalArgumentException("Invalid Username or Password"));
         // String token = jwtService.generateToken(user);
         String token = jwtService.generateToken(user);
-        ResponseCookie cookie = ResponseCookie.from("token", token)
+        if (token != null) {
+            ResponseCookie cookie = ResponseCookie.from("token", token)
                 .httpOnly(true)
                 .secure(false)
                 .path("/")
                 .maxAge(cookieExpiry)
                 .build();
-        response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+            response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+        }
 
         return new JwtResponse(token, user.getEmail());
     }

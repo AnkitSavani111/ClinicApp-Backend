@@ -41,12 +41,12 @@ public class PatientController {
 
     // Get one Patient by id
     @GetMapping(value = "/{id}")
-    public ResponseEntity<PatientDto> getPatientById(@PathVariable("id") int id) {
+    public ResponseEntity<?> getPatientById(@PathVariable("id") int id) {
         PatientDto p = this.patientService.getPatientById(id);
         if (p == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
-            return ResponseEntity.of(Optional.of(p));
+            return ResponseEntity.ok(Optional.of(p));
         }
     }
 
@@ -60,7 +60,7 @@ public class PatientController {
             message.put("message", "Patient not found");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
         }
-        return ResponseEntity.of(Optional.of(patients));
+        return ResponseEntity.ok(Optional.of(patients));
     }
 
     // Delete Patient by id
@@ -77,9 +77,9 @@ public class PatientController {
 
     // Update Patient by id
     @PutMapping("/{id}")
-    public ResponseEntity<PatientDto> updatePatientById(@RequestBody PatientDto patient, @PathVariable("id") int id) {
+    public ResponseEntity<?> updatePatientById(@RequestBody PatientDto patient, @PathVariable("id") int id) {
         try {
-            PatientDto updatedPatient = this.patientService.updatePatientById(patient, id);
+            // PatientDto updatedPatient = this.patientService.updatePatientById(patient, id);
             // System.out.println(updatedPatient);
             return ResponseEntity.ok().body(patient);
         } catch (Exception e) {

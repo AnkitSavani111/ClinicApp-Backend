@@ -36,17 +36,17 @@ public class AppointmentController {
             message.put("message", "Appointment not found");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
         }
-        return ResponseEntity.of(Optional.of(appointments));
+        return ResponseEntity.ok(Optional.of(appointments));
     }
 
     // Get one Appointment by id
     @GetMapping(value = "/{id}")
-    public ResponseEntity<AppointmentDto> getAppointmentById(@PathVariable("id") int id) {
+    public ResponseEntity<?> getAppointmentById(@PathVariable("id") int id) {
         AppointmentDto appointmentById = this.appointmentService.getAppointmentById(id);
         if (appointmentById == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
-            return ResponseEntity.of(Optional.of(appointmentById));
+            return ResponseEntity.ok(Optional.of(appointmentById));
         }
     }
 
