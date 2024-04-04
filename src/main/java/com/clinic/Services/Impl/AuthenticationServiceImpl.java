@@ -48,13 +48,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     public UserDto signup(UserDto userDto) {
         UserDto user = new UserDto();
-        user.setUsername(userDto.getUsername());
+        user.setUname(userDto.getUname());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setRole(Role.DOCTOR);
-        Optional<User> foundUser = userRepository.findByUsername(user.getUsername());
+        Optional<User> foundUser = userRepository.findByUname(user.getUname());
         if (foundUser.isPresent()) {
-            throw new DuplicateResourceException("User", "username", user.getUsername());
+            throw new DuplicateResourceException("User", "username", user.getUname());
         }
 
         try {
@@ -72,6 +72,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             .authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getEmail(), jwtRequest.getPassword()));
         User user = userRepository.findByEmail(jwtRequest.getEmail())
             .orElseThrow(() -> new IllegalArgumentException("Invalid Username or Password"));
+
+            System.out.println(user);
         // String token = jwtService.generateToken(user);
         String token = jwtService.generateToken(user);
         if (token != null) {
