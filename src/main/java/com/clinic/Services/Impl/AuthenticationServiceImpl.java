@@ -73,7 +73,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = userRepository.findByEmail(jwtRequest.getEmail())
             .orElseThrow(() -> new IllegalArgumentException("Invalid Username or Password"));
 
-            System.out.println(user);
+        // System.out.println(user);
         // String token = jwtService.generateToken(user);
         String token = jwtService.generateToken(user);
         if (token != null) {
@@ -86,7 +86,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
         }
 
-        return new JwtResponse(token, user.getEmail());
+        return new JwtResponse(token, user.getUname(), user.getUser_id());
     }
 
     private User dtoToUser(UserDto userDto) {
