@@ -35,9 +35,8 @@ public class UserController {
     @Autowired
     private AuthenticationService authenticationService;
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody JwtRequest jwtRequest, HttpServletResponse response) {
-
         JwtResponse jwtResponse = authenticationService.login(jwtRequest, response);
         return ResponseEntity.ok(jwtResponse);
     }
