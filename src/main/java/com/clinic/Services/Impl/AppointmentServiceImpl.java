@@ -40,7 +40,6 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public AppointmentDto createAppointment(AppointmentDto appointment) {
         Appointment newAppointment = dtoToAppointment(appointment);
-        // System.out.println(newAppointment);
         Appointment savedAppointment = this.appointmentRepository.save(newAppointment);
         return appointmentToDto(savedAppointment);
     }
@@ -49,6 +48,8 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public AppointmentDto updateAppointmentById(AppointmentDto appointment, int id) {
         Appointment newAppointment = dtoToAppointment(appointment);
+        newAppointment.setAppointmentId(id);
+        System.out.println(newAppointment);
         Appointment savedAppointment = this.appointmentRepository.save(newAppointment);
         return appointmentToDto(savedAppointment);
     }
