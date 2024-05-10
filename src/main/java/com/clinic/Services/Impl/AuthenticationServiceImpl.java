@@ -51,7 +51,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         user.setUname(userDto.getUname());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        user.setRole(Role.DOCTOR);
+        
+        user.setRole(userDto.getRole());
         Optional<User> foundUser = userRepository.findByUname(user.getUname());
         if (foundUser.isPresent()) {
             throw new DuplicateResourceException("User", "username", user.getUname());
