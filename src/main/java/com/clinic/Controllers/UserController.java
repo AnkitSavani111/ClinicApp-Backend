@@ -35,6 +35,12 @@ public class UserController {
     @Autowired
     private AuthenticationService authenticationService;
 
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletResponse response) {
+        authenticationService.logout(response);
+        return ResponseEntity.ok("Logged out successfully");
+    }
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody JwtRequest jwtRequest, HttpServletResponse response) {
         JwtResponse jwtResponse = authenticationService.login(jwtRequest, response);

@@ -89,6 +89,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return new JwtResponse(token, user.getUname(), user.getUser_id());
     }
 
+    public void logout(HttpServletResponse response) {
+        ResponseCookie cookie = ResponseCookie.from("token", "")
+            .httpOnly(true)
+            .secure(false)
+            .path("/")
+            .maxAge(0)
+            .build();
+        response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+    }
+
     private User dtoToUser(UserDto userDto) {
         return modelMapper.map(userDto, User.class);
     }
