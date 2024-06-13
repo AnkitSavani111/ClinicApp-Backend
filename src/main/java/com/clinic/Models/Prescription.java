@@ -1,4 +1,4 @@
-package com.clinic.Models;
+package com.clinic.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;

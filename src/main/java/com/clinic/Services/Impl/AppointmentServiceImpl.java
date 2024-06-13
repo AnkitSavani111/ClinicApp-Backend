@@ -1,25 +1,27 @@
-package com.clinic.Services.Impl;
+package com.clinic.services.impl;
+
+import com.clinic.dao.AppointmentRepository;
+import com.clinic.exceptions.ResourceNotFoundException;
+import com.clinic.models.Appointment;
+import com.clinic.payloads.AppointmentDto;
+import com.clinic.services.AppointmentService;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.clinic.Dao.AppointmentRepository;
-import com.clinic.Exceptions.ResourceNotFoundException;
-import com.clinic.Models.Appointment;
-import com.clinic.Payloads.AppointmentDto;
-import com.clinic.Services.AppointmentService;
-
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
 
-    @Autowired
-    private AppointmentRepository appointmentRepository;
+    private final AppointmentRepository appointmentRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
+
+    public AppointmentServiceImpl(AppointmentRepository appointmentRepository, ModelMapper modelMapper) {
+        this.appointmentRepository = appointmentRepository;
+        this.modelMapper = modelMapper;
+    }
 
     // Service implementation for Getting all Appointments
     @Override

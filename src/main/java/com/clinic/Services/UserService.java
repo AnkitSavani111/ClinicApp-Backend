@@ -1,8 +1,8 @@
-package com.clinic.Services;
+package com.clinic.services;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import com.clinic.Payloads.UserDto;
+import com.clinic.payloads.UserDto;
 
 public interface UserService {
     UserDetailsService userDetailsService();

@@ -1,9 +1,9 @@
-package com.clinic.Payloads;
+package com.clinic.payloads;
 
 import java.util.Date;
 import java.util.List;
 
-import com.clinic.Models.Appointment;
+import com.clinic.models.Appointment;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

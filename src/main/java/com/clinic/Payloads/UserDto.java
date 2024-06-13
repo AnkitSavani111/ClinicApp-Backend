@@ -1,6 +1,6 @@
-package com.clinic.Payloads;
+package com.clinic.payloads;
 
-import com.clinic.Models.Role;
+import com.clinic.models.Role;
 
 import lombok.Data;
 

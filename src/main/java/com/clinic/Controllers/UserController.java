@@ -1,4 +1,4 @@
-package com.clinic.Controllers;
+package com.clinic.controllers;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.clinic.Models.JwtRequest;
-import com.clinic.Models.JwtResponse;
-import com.clinic.Payloads.UserDto;
-import com.clinic.Payloads.VerifyResponse;
-import com.clinic.Services.AuthenticationService;
-import com.clinic.Services.JwtService;
-import com.clinic.Services.UserService;
+import com.clinic.models.JwtRequest;
+import com.clinic.models.JwtResponse;
+import com.clinic.payloads.UserDto;
+import com.clinic.payloads.VerifyResponse;
+import com.clinic.services.AuthenticationService;
+import com.clinic.services.JwtService;
+import com.clinic.services.UserService;
 
 import io.jsonwebtoken.Claims;
 

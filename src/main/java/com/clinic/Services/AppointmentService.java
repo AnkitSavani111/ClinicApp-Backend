@@ -1,8 +1,8 @@
-package com.clinic.Services;
+package com.clinic.services;
 
 import java.util.List;
 
-import com.clinic.Payloads.AppointmentDto;
+import com.clinic.payloads.AppointmentDto;
 
 public interface AppointmentService {
     // Get all Appointments

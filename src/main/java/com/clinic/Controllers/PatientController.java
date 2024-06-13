@@ -1,4 +1,4 @@
-package com.clinic.Controllers;
+package com.clinic.controllers;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import com.clinic.Payloads.PatientDto;
-import com.clinic.Services.PatientService;
+
+import com.clinic.payloads.PatientDto;
+import com.clinic.services.PatientService;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

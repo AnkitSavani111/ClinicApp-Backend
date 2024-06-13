@@ -1,8 +1,8 @@
-package com.clinic.Services;
-
-import com.clinic.Payloads.PatientDto;
+package com.clinic.services;
 
 import java.util.List;
+
+import com.clinic.payloads.PatientDto;
 
 public interface PatientService {
 

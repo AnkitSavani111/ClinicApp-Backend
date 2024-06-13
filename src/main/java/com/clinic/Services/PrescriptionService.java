@@ -1,8 +1,8 @@
-package com.clinic.Services;
+package com.clinic.services;
 
 import java.util.List;
 
-import com.clinic.Payloads.PrescriptionDto;
+import com.clinic.payloads.PrescriptionDto;
 
 public interface PrescriptionService {
     PrescriptionDto createPrescription(PrescriptionDto prescription);

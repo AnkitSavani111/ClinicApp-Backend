@@ -1,4 +1,4 @@
-package com.clinic.Security;
+package com.clinic.security;
 
 import java.io.IOException;
 
@@ -12,8 +12,9 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.clinic.Services.UserService;
-import com.clinic.Services.Impl.JwtServiceImpl;
+import com.clinic.services.UserService;
+import com.clinic.services.impl.JwtServiceImpl;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

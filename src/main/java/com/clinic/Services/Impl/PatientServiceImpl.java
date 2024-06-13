@@ -1,12 +1,11 @@
-package com.clinic.Services.Impl;
+package com.clinic.services.impl;
 
-import com.clinic.Dao.PatientRepository;
-import com.clinic.Exceptions.ResourceNotFoundException;
-import com.clinic.Models.Patient;
-import com.clinic.Payloads.PatientDto;
-import com.clinic.Services.PatientService;
+import com.clinic.dao.PatientRepository;
+import com.clinic.exceptions.ResourceNotFoundException;
+import com.clinic.models.Patient;
+import com.clinic.payloads.PatientDto;
+import com.clinic.services.PatientService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,11 +14,14 @@ import java.util.stream.Collectors;
 @Service
 public class PatientServiceImpl implements PatientService {
 
-    @Autowired
-    private PatientRepository patientRepository;
+    private final PatientRepository patientRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
+
+    public PatientServiceImpl(PatientRepository patientRepository, ModelMapper modelMapper) {
+        this.patientRepository = patientRepository;
+        this.modelMapper = modelMapper;
+    }
 
     // Service implemantation for creating new Patient
     @Override

@@ -1,4 +1,4 @@
-package com.clinic.Security;
+package com.clinic.security;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -1,4 +1,4 @@
-package com.clinic.Payloads;
+package com.clinic.payloads;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

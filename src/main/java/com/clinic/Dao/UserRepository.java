@@ -1,11 +1,11 @@
-package com.clinic.Dao;
+package com.clinic.dao;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.clinic.Models.User;
+import com.clinic.models.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {

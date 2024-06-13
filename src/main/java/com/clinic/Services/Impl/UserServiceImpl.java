@@ -1,9 +1,10 @@
-package com.clinic.Services.Impl;
+package com.clinic.services.impl;
 
-import com.clinic.Dao.UserRepository;
-import com.clinic.Models.User;
-import com.clinic.Payloads.UserDto;
-import com.clinic.Services.UserService;
+import com.clinic.dao.UserRepository;
+import com.clinic.models.User;
+import com.clinic.payloads.UserDto;
+import com.clinic.services.UserService;
+
 import lombok.RequiredArgsConstructor;
 
 import org.modelmapper.ModelMapper;
@@ -16,11 +17,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     private UserRepository userRepository;
     
-    @Autowired    
     private ModelMapper modelMapper;
+
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper) {
+        this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
+    }
 
     public UserDetailsService userDetailsService() {
         return email -> userRepository.findByEmail(email)

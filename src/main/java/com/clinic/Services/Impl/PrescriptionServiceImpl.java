@@ -1,25 +1,26 @@
-package com.clinic.Services.Impl;
+package com.clinic.services.impl;
+
+import com.clinic.dao.PrescriptionRepository;
+import com.clinic.models.Prescription;
+import com.clinic.payloads.PrescriptionDto;
+import com.clinic.services.PrescriptionService;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.clinic.Dao.PrescriptionRepository;
-import com.clinic.Models.Prescription;
-import com.clinic.Payloads.PrescriptionDto;
-import com.clinic.Services.PrescriptionService;
-
 @Service
 public class PrescriptionServiceImpl implements PrescriptionService{
         
-    @Autowired
-    private PrescriptionRepository prescriptionRepository;
+    private final PrescriptionRepository prescriptionRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
+
+    public PrescriptionServiceImpl(PrescriptionRepository prescriptionRepository, ModelMapper modelMapper) {
+        this.prescriptionRepository = prescriptionRepository;
+        this.modelMapper = modelMapper;
+    }
 
     // Service implemantation for Creating Prescription by id
     public PrescriptionDto createPrescription(PrescriptionDto prescription) {

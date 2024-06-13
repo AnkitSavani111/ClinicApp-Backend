@@ -1,4 +1,4 @@
-package com.clinic.Services.Impl;
+package com.clinic.services.impl;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import com.clinic.Services.JwtService;
+import com.clinic.services.JwtService;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

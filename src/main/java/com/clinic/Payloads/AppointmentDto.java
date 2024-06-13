@@ -1,10 +1,10 @@
-package com.clinic.Payloads;
+package com.clinic.payloads;
 
 import java.util.Date;
 import java.util.List;
 
-import com.clinic.Models.Patient;
-import com.clinic.Models.Prescription;
+import com.clinic.models.Patient;
+import com.clinic.models.Prescription;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

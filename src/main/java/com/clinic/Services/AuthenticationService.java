@@ -1,8 +1,8 @@
-package com.clinic.Services;
+package com.clinic.services;
 
-import com.clinic.Models.JwtRequest;
-import com.clinic.Models.JwtResponse;
-import com.clinic.Payloads.UserDto;
+import com.clinic.models.JwtRequest;
+import com.clinic.models.JwtResponse;
+import com.clinic.payloads.UserDto;
 
 import jakarta.servlet.http.HttpServletResponse;
 

@@ -1,4 +1,4 @@
-package com.clinic.Models;
+package com.clinic.models;
 
 import java.util.Collection;
 import java.util.List;

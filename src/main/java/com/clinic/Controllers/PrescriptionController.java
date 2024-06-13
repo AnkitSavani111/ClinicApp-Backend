@@ -1,4 +1,4 @@
-package com.clinic.Controllers;
+package com.clinic.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.clinic.Payloads.PrescriptionDto;
-import com.clinic.Services.PrescriptionService;
+import com.clinic.payloads.PrescriptionDto;
+import com.clinic.services.PrescriptionService;
 
 @RestController
 @RequestMapping("/prescription")
